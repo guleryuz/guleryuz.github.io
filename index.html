@@ -2,7 +2,6 @@
 <head></head>
 <body>
 <pre>
-
 #########################################################################
 # locale problems in ssh connections like:
 # "locale: Cannot set LC_ALL to default locale: No such file or directory"
@@ -27,7 +26,27 @@ wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key a
 sudo apt update
 sudo apt install postgresql-11 postgresql-client-11 postgresql-contrib-11
 
-    
+#########################################################################
+# upgrade postgresql (e.g. from 9.5 to 11)
+# stop service
+sudo service postgresql stop
+# drop default cluster
+sudo pg_dropcluster 11 main
+# upgrade
+sudo pg_upgradecluster 9.5 main
+# start service
+sudo service postgresql start
+# check if it is running
+# drop old cluster
+sudo pg_dropcluster 9.5 main
+
+#########################################################################
+# new postgresql database
+sudo -u postgres psql
+CREATE ROLE xyzdbuser LOGIN PASSWORD 'xyzdbuser';
+CREATE DATABASE xyzdb OWNER xyzdbuser ENCODING 'UTF8' TEMPLATE template0;
+\q
+
     
 </pre>  
 </body>
