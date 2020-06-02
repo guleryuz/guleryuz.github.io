@@ -1,4 +1,24 @@
-<html>
-<head></head>
-<body>Hoşgeldiniz</body>
-</html>
+#########################################################################
+# locale problems in ssh connections like:
+# "locale: Cannot set LC_ALL to default locale: No such file or directory"
+
+# Refuse Client Locale Environment Variable in ssh server
+sudo nano /etc/ssh/sshd_config
+# Find the following line.
+# AcceptEnv LANG LC_*
+# Change it to
+# AcceptEnv no
+sudo service ssh restart
+
+#########################################################################
+# install postgresql
+sudo apt-get update
+sudo apt-get install postgresql
+
+#########################################################################
+# install specific postgresql version (e.g. version 11)
+sudo sh -c 'echo deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main > /etc/apt/sources.list.d/pgdg.list'
+wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt update
+sudo apt install postgresql-11 postgresql-client-11 postgresql-contrib-11
+
