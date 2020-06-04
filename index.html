@@ -41,11 +41,24 @@ sudo service postgresql start
 sudo pg_dropcluster 9.5 main
 
 #########################################################################
+# use postgresql without install
+# download binary from https://www.enterprisedb.com/download-postgresql-binaries
+# init database cluster
+/path/to/pgsql/bin/pg_ctl.exe init -U postgres -D /path/to/data
+# start database
+path/to/pgsql/bin/pg_ctl start -D /path/to/data -o "-p 5433" -l logfile
+# connect database
+path/to/pgsql/bin/psql -U postgres -p 5433
+# stop database (smart stop: wait for active transactions and backup)
+path/to/pgsql/bin/pg_ctl stop -D /path/to/data
+
+#########################################################################
 # new postgresql database
 sudo -u postgres psql
 CREATE ROLE xyzdbuser LOGIN PASSWORD 'xyzdbuser';
 CREATE DATABASE xyzdb OWNER xyzdbuser ENCODING 'UTF8' TEMPLATE template0;
 \q
+
 
     
 </pre>  
