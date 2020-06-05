@@ -53,6 +53,7 @@ path/to/pgsql/bin/createuser -p 5433 -s postgres
 path/to/pgsql/bin/psql -U postgres -p 5433
 # stop database (smart stop: wait for active transactions and backup)
 path/to/pgsql/bin/pg_ctl stop -D /path/to/data
+# database will stop when exit command prompt (windows) (linux ?)
 
 #########################################################################
 # new postgresql database
