@@ -44,9 +44,11 @@ sudo pg_dropcluster 9.5 main
 # use postgresql without install
 # download binary from https://www.enterprisedb.com/download-postgresql-binaries
 # init database cluster
-/path/to/pgsql/bin/pg_ctl.exe init -U postgres -D /path/to/data
+/path/to/pgsql/bin/pg_ctl init -U postgres -D /path/to/data
 # start database
 path/to/pgsql/bin/pg_ctl start -D /path/to/data -o "-p 5433" -l logfile
+# create user postgres
+path/to/pgsql/bin/createuser -p 5433 -s postgres
 # connect database
 path/to/pgsql/bin/psql -U postgres -p 5433
 # stop database (smart stop: wait for active transactions and backup)
